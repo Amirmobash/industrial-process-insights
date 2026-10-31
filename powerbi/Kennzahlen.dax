@@ -1,0 +1,11 @@
+// Jede Kennzahl einzeln in der Tabelle Prozessdaten anlegen.
+// Bei lokalisierten DAX-Trennzeichen Kommas ggf. durch Semikolons ersetzen.
+Messungen = COUNTROWS(Prozessdaten)
+
+Ereignisse = CALCULATE(COUNTROWS(Prozessdaten), Prozessdaten[Ereignisgroesse] > 0)
+
+Temperatur Mittelwert = AVERAGE(Prozessdaten[Temperatur_C])
+
+Vibration Maximum = MAX(Prozessdaten[Vibration_mm_s])
+
+Anlagen = DISTINCTCOUNT(Prozessdaten[Anlage])

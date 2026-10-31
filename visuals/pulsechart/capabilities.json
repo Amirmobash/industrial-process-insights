@@ -1,0 +1,553 @@
+{
+  "dataRoles": [
+    {
+      "displayNameKey": "Visual_Timestamp",
+      "displayName": "Zeitstempel",
+      "name": "Timestamp",
+      "kind": "Grouping"
+    },
+    {
+      "displayNameKey": "Visual_Values",
+      "displayName": "Werte",
+      "name": "Value",
+      "kind": "Measure"
+    },
+    {
+      "displayNameKey": "Visual_PulseChart_EventTitle",
+      "displayName": "Ereignistitel",
+      "name": "EventTitle",
+      "kind": "GroupingOrMeasure"
+    },
+    {
+      "displayNameKey": "Visual_PulseChart_EventDescription",
+      "displayName": "Ereignisbeschreibung",
+      "name": "EventDescription",
+      "kind": "GroupingOrMeasure"
+    },
+    {
+      "displayNameKey": "Visual_PulseChart_EventSize",
+      "displayName": "Ereignisgröße",
+      "name": "EventSize",
+      "kind": "Measure"
+    },
+    {
+      "displayNameKey": "Visual_PulseChart_RunnerCounter",
+      "displayName": "Ausführungszähler",
+      "name": "RunnerCounter",
+      "kind": "GroupingOrMeasure"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "Timestamp": {
+            "max": 1
+          },
+          "Value": {
+            "max": 1
+          },
+          "Category": {
+            "max": 1
+          },
+          "EventTitle": {
+            "max": 1
+          },
+          "EventDescription": {
+            "max": 1
+          },
+          "EventSize": {
+            "max": 1
+          },
+          "RunnerCounter": {
+            "max": 1
+          }
+        }
+      ],
+      "categorical": {
+        "categories": {
+          "select": [
+            {
+              "for": {
+                "in": "Timestamp"
+              }
+            },
+            {
+              "bind": {
+                "to": "EventTitle"
+              }
+            },
+            {
+              "bind": {
+                "to": "EventDescription"
+              }
+            },
+            {
+              "bind": {
+                "to": "RunnerCounter"
+              }
+            }
+          ],
+          "dataReductionAlgorithm": {
+            "top": {
+              "count": 10000
+            }
+          }
+        },
+        "values": {
+          "group": {
+            "by": "Category",
+            "select": [
+              {
+                "bind": {
+                  "to": "Value"
+                }
+              },
+              {
+                "bind": {
+                  "to": "EventSize"
+                }
+              }
+            ],
+            "dataReductionAlgorithm": {
+              "top": {}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "objects": {
+    "series": {
+      "displayName": "Reihe",
+      "displayNameKey": "Visual_Series",
+      "description": "Reihe",
+      "descriptionKey": "Visual_Series",
+      "properties": {
+        "fill": {
+          "displayName": "Ausfüllen",
+          "displayNameKey": "Visual_Fill",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "width": {
+          "displayName": "Breite",
+          "displayNameKey": "Visual_Width",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "gaps": {
+      "displayName": "Abstände",
+      "displayNameKey": "Visual_PulseChart_Gaps",
+      "description": "Abstände",
+      "descriptionKey": "Visual_PulseChart_Gaps",
+      "properties": {
+        "show": {
+          "displayName": "Anzeigen",
+          "displayNameKey": "Visual_Show",
+          "type": {
+            "bool": true
+          }
+        },
+        "transparency": {
+          "displayName": "Sichtbare Abstände",
+          "displayNameKey": "Visual_PulseChart_VisibleGaps",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "general": {
+      "displayName": "Allgemein",
+      "displayNameKey": "Visual_General",
+      "properties": {
+        "fill": {
+          "displayName": "Hintergrundfarbe",
+          "displayNameKey": "Visual_BackgroundColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "popup": {
+      "displayName": "Popup",
+      "displayNameKey": "Visual_Popup",
+      "properties": {
+        "show": {
+          "displayName": "Anzeigen",
+          "displayNameKey": "Visual_Show",
+          "type": {
+            "bool": true
+          }
+        },
+        "alwaysOnTop": {
+          "displayName": "Immer im Vordergrund",
+          "displayNameKey": "Visual_AlwaysTop",
+          "type": {
+            "bool": true
+          }
+        },
+        "width": {
+          "displayName": "Breite",
+          "displayNameKey": "Visual_Width",
+          "type": {
+            "numeric": true
+          }
+        },
+        "height": {
+          "displayName": "Höhe",
+          "displayNameKey": "Visual_Height",
+          "type": {
+            "numeric": true
+          }
+        },
+        "color": {
+          "displayName": "Ausfüllen",
+          "displayNameKey": "Visual_Fill",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "fontSize": {
+          "displayName": "Textgröße",
+          "displayNameKey": "Visual_TextSize",
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        },
+        "fontColor": {
+          "displayName": "Textfarbe",
+          "displayNameKey": "Visual_TextColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "showTime": {
+          "displayName": "Zeit anzeigen",
+          "displayNameKey": "Visual_PulseChart_ShowTime",
+          "type": {
+            "bool": true
+          }
+        },
+        "showTitle": {
+          "displayName": "Titel anzeigen",
+          "displayNameKey": "Visual_ShowTitle",
+          "type": {
+            "bool": true
+          }
+        },
+        "timeColor": {
+          "displayName": "Farbe für Zeit",
+          "displayNameKey": "Visual_PulseChart_TimeColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "timeFill": {
+          "displayName": "Füllung für Zeit",
+          "displayNameKey": "Visual_PulseChart_TimeFill",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "dots": {
+      "displayName": "Punkte",
+      "displayNameKey": "Visual_Dots",
+      "properties": {
+        "color": {
+          "displayName": "Ausfüllen",
+          "displayNameKey": "Visual_Fill",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "minSize": {
+          "displayName": "Mindestgröße",
+          "displayNameKey": "Visual_MinSize",
+          "type": {
+            "numeric": true
+          }
+        },
+        "maxSize": {
+          "displayName": "Max. Größe",
+          "displayNameKey": "Visual_MaxSize",
+          "type": {
+            "numeric": true
+          }
+        },
+        "size": {
+          "displayName": "Standardgröße",
+          "displayNameKey": "Visual_DefaultSize",
+          "type": {
+            "numeric": true
+          }
+        },
+        "transparency": {
+          "displayName": "Transparenz",
+          "displayNameKey": "Visual_Transparency",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "xAxis": {
+      "displayName": "X-Achse",
+      "displayNameKey": "Visual_XAxis",
+      "properties": {
+        "show": {
+          "displayName": "Anzeigen",
+          "displayNameKey": "Visual_Show",
+          "type": {
+            "bool": true
+          }
+        },
+        "position": {
+          "displayName": "Position",
+          "displayNameKey": "Visual_Position",
+          "type": {
+            "enumeration": [
+              {
+                "value": "0",
+                "displayNameKey": "Visual_Center",
+                "displayName": "Zentriert"
+              },
+              {
+                "value": "1",
+                "displayNameKey": "Visual_Bottom",
+                "displayName": "Unten"
+              }
+            ]
+          }
+        },
+        "fontColor": {
+          "displayName": "Schriftfarbe",
+          "displayNameKey": "Visual_FontColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "color": {
+          "displayName": "Achsenfarbe",
+          "displayNameKey": "Visual_AxisColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "backgroundColor": {
+          "displayName": "Hintergrundfarbe",
+          "displayNameKey": "Visual_BackgroundColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "yAxis": {
+      "displayName": "Y-Achse",
+      "displayNameKey": "Visual_YAxis",
+      "properties": {
+        "show": {
+          "displayName": "Anzeigen",
+          "displayNameKey": "Visual_Show",
+          "type": {
+            "bool": true
+          }
+        },
+        "fontColor": {
+          "displayName": "Schriftfarbe",
+          "displayNameKey": "Visual_FontColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "color": {
+          "displayName": "Achsenfarbe",
+          "displayNameKey": "Visual_AxisColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "playback": {
+      "displayName": "Wiedergabe",
+      "displayNameKey": "Visual_PulseChart_Playback",
+      "properties": {
+        "autoplay": {
+          "displayName": "Automatische Wiedergabe",
+          "displayNameKey": "Visual_PulseChart_Autoplay",
+          "type": {
+            "bool": true
+          }
+        },
+        "repeat": {
+          "displayName": "Wiederholen",
+          "displayNameKey": "Visual_PulseChart_Repeat",
+          "type": {
+            "bool": true
+          }
+        },
+        "playSpeed": {
+          "displayName": "Geschwindigkeit (Punkte/Sek.)",
+          "displayNameKey": "Visual_PulseChart_PlaySpeed",
+          "type": {
+            "numeric": true
+          }
+        },
+        "pauseDuration": {
+          "displayName": "Pausendauer",
+          "displayNameKey": "Visual_PulseChart_PauseDuration",
+          "type": {
+            "numeric": true
+          }
+        },
+        "autoplayPauseDuration": {
+          "displayName": "Startverzögerung",
+          "displayNameKey": "Visual_PulseChart_StartDelay",
+          "type": {
+            "numeric": true
+          }
+        },
+        "color": {
+          "displayName": "Farbe für Schaltflächen",
+          "displayNameKey": "Visual_PulseChart_ButtonsColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "runnerCounter": {
+      "displayName": "Ausführungszähler",
+      "displayNameKey": "Visual_PulseChart_RunnerCounter",
+      "properties": {
+        "show": {
+          "displayName": "Anzeigen",
+          "displayNameKey": "Visual_Show",
+          "type": {
+            "bool": true
+          }
+        },
+        "label": {
+          "displayName": "Bezeichnung",
+          "displayNameKey": "Visual_Label",
+          "type": {
+            "text": true
+          }
+        },
+        "position": {
+          "displayName": "Position",
+          "displayNameKey": "Visual_Position",
+          "type": {
+            "enumeration": [
+              {
+                "value": "0",
+                "displayNameKey": "Visual_TopLeft",
+                "displayName": "Oben links"
+              },
+              {
+                "value": "1",
+                "displayNameKey": "Visual_TopRight",
+                "displayName": "Oben rechts"
+              }
+            ]
+          }
+        },
+        "fontSize": {
+          "displayName": "Textgröße",
+          "displayNameKey": "Visual_TextSize",
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        },
+        "fontColor": {
+          "displayName": "Schriftfarbe",
+          "displayNameKey": "Visual_FontColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sorting": {
+    "implicit": {
+      "clauses": [
+        {
+          "role": "Timestamp",
+          "direction": 1
+        }
+      ]
+    }
+  },
+  "supportsHighlight": true
+}

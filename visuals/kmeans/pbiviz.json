@@ -1,0 +1,27 @@
+{
+  "visual": {
+    "name": "PowerBI-visuals-clustering-kmeans-1.0.6",
+    "displayName": "Prozesscluster",
+    "guid": "PBI_CV_7BD71041_0FDE_423E_BAB2_9804ACC742E8_HTML",
+    "visualClassName": "Visual",
+    "version": "1.0.6",
+    "description": "Ähnlichkeitsgruppen industrieller Messwerte mit K-Means.",
+    "supportUrl": "http://community.powerbi.com/",
+    "gitHubUrl": "https://github.com/microsoft/PowerBI-visuals-clustering-kmeans"
+  },
+  "apiVersion": "1.10.0",
+  "author": {
+    "name": "Microsoft",
+    "email": "pbicvsupport@microsoft.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": [
+    "node_modules/powerbi-visuals-utils-dataviewutils/lib/index.js"
+  ],
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": "dependencies.json",
+  "stringResources": []
+}

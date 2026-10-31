@@ -1,0 +1,451 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "Messwerte",
+      "description": "Mindestens zwei numerische Spalten hinzufügen",
+      "kind": "GroupingOrMeasure",
+      "name": "Values"
+    },
+    {
+      "displayName": "Punktbeschriftungen",
+      "description": "Kurze Beschriftung pro Messpunkt (optional)",
+      "kind": "GroupingOrMeasure",
+      "name": "PointLabels"
+    },
+    {
+      "displayName": "Kurzinfos",
+      "kind": "GroupingOrMeasure",
+      "description": "Weitere Felder für Kurzinfos",
+      "name": "Tooltips"
+    },
+    {
+      "displayName": "ID",
+      "description": "Eindeutige Kennung gegen das Entfernen identischer Zeilen (optional)",
+      "kind": "GroupingOrMeasure",
+      "name": "ID"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "Values": {
+            "max": 10
+          },
+          "PointLabels": {
+            "max": 1
+          },
+          "Tooltips": {
+            "max": 2
+          },
+          "ID": {
+            "max": 1
+          }
+        }
+      ],
+      "scriptResult": {
+        "dataInput": {
+          "table": {
+            "rows": {
+              "select": [
+                {
+                  "for": {
+                    "in": "Values"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "PointLabels"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "Tooltips"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "ID"
+                  }
+                }
+              ],
+              "dataReductionAlgorithm": {
+                "top": {}
+              }
+            }
+          }
+        },
+        "script": {
+          "scriptProviderDefault": "R",
+          "scriptOutputType": "html",
+          "source": {
+            "objectName": "rcv_script",
+            "propertyName": "source"
+          },
+          "provider": {
+            "objectName": "rcv_script",
+            "propertyName": "provider"
+          }
+        }
+      }
+    }
+  ],
+  "objects": {
+    "rcv_script": {
+      "properties": {
+        "provider": {
+          "type": {
+            "text": true
+          }
+        },
+        "source": {
+          "type": {
+            "scripting": {
+              "source": true
+            }
+          }
+        }
+      }
+    },
+    "settings_prepocessing_params": {
+      "displayName": "Datenvorverarbeitung",
+      "properties": {
+        "scaleData": {
+          "displayName": "Daten standardisieren",
+          "description": "Merkmale auf vergleichbare Größenordnungen standardisieren",
+          "type": {
+            "bool": true
+          }
+        },
+        "applyPCA": {
+          "displayName": "PCA anwenden",
+          "description": "Für Daten mit mehr als zwei Dimensionen empfohlen",
+          "type": {
+            "bool": true
+          }
+        }
+      }
+    },
+    "settings_clusterNum_params": {
+      "displayName": "Clusterdefinition",
+      "description": "Anzahl der Cluster einstellen",
+      "properties": {
+        "numOfClusters": {
+          "displayName": "Clusteranzahl",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "automatisch",
+                "value": "auto"
+              },
+              {
+                "displayName": "2",
+                "value": "2"
+              },
+              {
+                "displayName": "3",
+                "value": "3"
+              },
+              {
+                "displayName": "4",
+                "value": "4"
+              },
+              {
+                "displayName": "5",
+                "value": "5"
+              },
+              {
+                "displayName": "6",
+                "value": "6"
+              },
+              {
+                "displayName": "7",
+                "value": "7"
+              },
+              {
+                "displayName": "8",
+                "value": "8"
+              },
+              {
+                "displayName": "9",
+                "value": "9"
+              },
+              {
+                "displayName": "10",
+                "value": "10"
+              },
+              {
+                "displayName": "11",
+                "value": "11"
+              },
+              {
+                "displayName": "12",
+                "value": "12"
+              }
+            ]
+          }
+        },
+        "numClustersMethods": {
+          "displayName": "Methode",
+          "description": "Methode zur automatischen Clusteranzahl wählen",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "mittel",
+                "value": "moderate"
+              },
+              {
+                "displayName": "langsam",
+                "value": "slow"
+              },
+              {
+                "displayName": "schnell",
+                "value": "fast"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "settings_viz_params": {
+      "displayName": "Darstellung",
+      "properties": {
+        "drawEllipse": {
+          "displayName": "Ellipse zeichnen",
+          "description": "Benötigt mindestens vier Punkte",
+          "type": {
+            "bool": true
+          }
+        },
+        "drawConvexHull": {
+          "displayName": "Konvexe Hülle zeichnen",
+          "type": {
+            "bool": true
+          }
+        },
+        "drawCentroid": {
+          "displayName": "Zentrum zeichnen",
+          "type": {
+            "bool": true
+          }
+        },
+        "percentile": {
+          "displayName": "Punktdeckkraft",
+          "type": {
+            "numeric": true
+          }
+        },
+        "weight": {
+          "displayName": "Punktgröße",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "settings_labeling_params": {
+      "displayName": "Punktbeschriftung",
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "textSize": {
+          "displayName": "Schriftgröße",
+          "type": {
+            "numeric": true
+          }
+        },
+        "percentile": {
+          "displayName": "Beschriftungsdeckkraft",
+          "type": {
+            "numeric": true
+          }
+        },
+        "maxLenPointLabel": {
+          "displayName": "Beschriftungslänge begrenzen",
+          "description": "Beschriftungen kürzen",
+          "type": {
+            "numeric": true
+          }
+        },
+        "percentile1": {
+          "displayName": "Anteil beschrifteter Punkte",
+          "description": "Vermeidet überlagerte Beschriftungen",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "settings_representative_params": {
+      "displayName": "Clusterrepräsentant beschriften",
+      "description": "Typischen Vertreter jedes Clusters beschriften",
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "textSize": {
+          "displayName": "Schriftgröße",
+          "type": {
+            "numeric": true
+          }
+        },
+        "maxLenDelegateLabel": {
+          "displayName": "Beschriftungslänge begrenzen",
+          "description": "Beschriftungen kürzen",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "settings_legend_params": {
+      "displayName": "Legende",
+      "description": "Legendeneinstellungen",
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "palleteType": {
+          "displayName": "Farbpalette",
+          "description": "Typ der Farbpalette",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "Regenbogen",
+                "value": "rainbow"
+              },
+              {
+                "displayName": "qPBI",
+                "value": "qPBI"
+              },
+              {
+                "displayName": "qMSOStd",
+                "value": "qMSOStd"
+              },
+              {
+                "displayName": "Grau",
+                "value": "gray"
+              },
+              {
+                "displayName": "Cyan/Magenta",
+                "value": "cm"
+              },
+              {
+                "displayName": "Topografisch",
+                "value": "topo"
+              },
+              {
+                "displayName": "Gelände",
+                "value": "terrain"
+              },
+              {
+                "displayName": "Wärme",
+                "value": "heat"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "settings_additional_params": {
+      "displayName": "Erweitert",
+      "description": "Weitere Clustereinstellungen",
+      "properties": {
+        "sparsify": {
+          "displayName": "Punktdichte reduzieren",
+          "description": "Dichte Punktbereiche reduzieren. Spart Speicher und verbessert die Lesbarkeit, ohne das Clusterergebnis zu ändern.",
+          "type": {
+            "bool": true
+          }
+        },
+        "minClusters": {
+          "displayName": "Minimale Clusteranzahl",
+          "description": "Untere Grenze für automatische Clusterwahl",
+          "type": {
+            "numeric": true
+          }
+        },
+        "maxClusters": {
+          "displayName": "Maximale Clusteranzahl",
+          "description": "Obere Grenze für automatische Clusterwahl",
+          "type": {
+            "numeric": true
+          }
+        },
+        "maxIter": {
+          "displayName": "Maximale Iterationsanzahl",
+          "description": "Maximale Anzahl der K-Means-Iterationen",
+          "type": {
+            "numeric": true
+          }
+        },
+        "nStart": {
+          "displayName": "Anzahl Initialisierungen",
+          "description": "Anzahl zufälliger K-Means-Initialisierungen",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "settings_export_params": {
+      "displayName": "Daten exportieren",
+      "description": "Clusterergebnis exportieren",
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "limitExportSize": {
+          "displayName": "Maximale Exportzeilen",
+          "description": "Zeilenanzahl begrenzen",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "1000",
+                "value": "1000"
+              },
+              {
+                "displayName": "10000",
+                "value": "10000"
+              },
+              {
+                "displayName": "50000",
+                "value": "50000"
+              },
+              {
+                "displayName": "unbegrenzt",
+                "value": "100000"
+              }
+            ]
+          }
+        },
+        "method": {
+          "displayName": "Methode",
+          "description": "Methode",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "In Zwischenablage kopieren",
+                "value": "copy"
+              },
+              {
+                "displayName": "Herunterladen (nur Service)",
+                "value": "download"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "suppressDefaultTitle": true
+}

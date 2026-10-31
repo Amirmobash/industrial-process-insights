@@ -1,0 +1,2 @@
+c391f2c0ee34f407455c1ad36a7578c5b20df9fc5080519fb936749f9b64adc8  PowerBI-visuals-clustering-kmeans-master(1).zip
+1179ca7491ad4885315031154e624cfc1520465beff43354fe5e10b6243163cb  powerbi-visuals-pulsechart-master(1).zip
