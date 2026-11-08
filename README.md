@@ -1,5 +1,11 @@
 # Industrial Process Insights
 
+
+<p align="center"><img src="docs/images/industrial-kmeans-clustering-sensor-event-chart.svg" alt="Industrial process insights with K-means clustering and time-series events" width="960" /></p>
+
+<sub>Illustrative project schematic; not an actual CAD export, hardware photograph, or independently tested result.</sub>
+
+
 **Industrielle Prozessanalyse mit K-Means-Clustering und ereignisbasierter Zeitreihe.**
 
 Dieses Projekt verbindet die Ideen und Quellprojekte von Microsofts **Pulse Chart** und **K-Means-Clustering** in einem gemeinsamen Analyseablauf. Messungen erhalten eine Clusterzuordnung; diese Zuordnung wird mit Sensorverlauf und Ereignissen über dieselbe Messungs-ID verknüpft. Ein deutschsprachiges Offline-Dashboard macht den Ablauf direkt nachvollziehbar.
